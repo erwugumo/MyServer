@@ -1,0 +1,3 @@
+The server listen a socket, accept function to wait a connect of client.
+When the client comes, the accept function will return a file descriptor.
+The read function read things from the fd, then the write function write things to the fd. 
