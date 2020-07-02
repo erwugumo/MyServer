@@ -18,5 +18,11 @@
     "code-runner.ignoreSelection": true,   // 默认为false，效果是鼠标选中一块代码后可以单独执行，但C是编译型语言，不适合这样用
 
     "C_Cpp.clang_format_sortIncludes": true,
-    "C_Cpp.errorSquiggles": "Disabled", // 格式化时调整include的顺序（按字母排序）
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "istream": "c",
+        "memory": "c",
+        "ostream": "c",
+        "streambuf": "c"
+    }, // 格式化时调整include的顺序（按字母排序）
 }
