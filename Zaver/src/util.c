@@ -86,8 +86,12 @@ int read_conf(char *filename, zv_conf_t *cf, char *buf, int len) {
     char *delim_pos;
     int line_len;
     char *cur_pos = buf+pos;
-
+    /*char *fgets(char *str, int n, FILE *stream);
+    从指定的流 stream 读取一行，并把它存储在 str 所指向的字符串内。
+    当读取 (n-1) 个字符时，或者读取到换行符时，或者到达文件末尾时，它会停止，*/
     while (fgets(cur_pos, len-pos, fp)) {
+        /*strstr(str1,str2) 函数用于判断字符串str2是否是str1的子串。
+        如果是，则该函数返回 str1字符串从 str2第一次出现的位置开始到 str1结尾的字符串；否则，返回NULL。*/
         delim_pos = strstr(cur_pos, DELIM);
         line_len = strlen(cur_pos);
         
@@ -100,7 +104,10 @@ int read_conf(char *filename, zv_conf_t *cf, char *buf, int len) {
         if (cur_pos[strlen(cur_pos) - 1] == '\n') {
             cur_pos[strlen(cur_pos) - 1] = '\0';
         }
-
+        /*int strncmp ( const char * str1, const char * str2, size_t n );
+        功能是把 str1 和 str2 进行比较，最多比较前 n 个字节，
+        若str1与str2的前n个字符相同，则返回0；
+        若s1大于s2，则返回大于0的值；若s1 小于s2，则返回小于0的值*/
         if (strncmp("root", cur_pos, 4) == 0) {
             cf->root = delim_pos + 1;
         }
