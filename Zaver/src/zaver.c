@@ -166,7 +166,7 @@ int main(int argc, char* argv[]) {
     // initialize clientaddr and inlen to solve "accept Invalid argument" bug
     socklen_t inlen = 1;
     memset(&clientaddr, 0, sizeof(struct sockaddr_in));  
-    
+    /*open_listenfd函数实现socket绑定以及listen*/
     listenfd = open_listenfd(cf.port);
     rc = make_socket_non_blocking(listenfd);
     check(rc == 0, "make_socket_non_blocking");
@@ -179,7 +179,14 @@ int main(int argc, char* argv[]) {
     
     zv_http_request_t *request = (zv_http_request_t *)malloc(sizeof(zv_http_request_t));
     zv_init_request_t(request, listenfd, epfd, &cf);
+    /*其中events表示感兴趣的事件和被触发的事件，可能的取值为：
+    EPOLLIN：表示对应的文件描述符可以读；
+    EPOLLOUT：表示对应的文件描述符可以写；
+    EPOLLPRI：表示对应的文件描述符有紧急的数可读；
 
+    EPOLLERR：表示对应的文件描述符发生错误；
+    EPOLLHUP：表示对应的文件描述符被挂断；
+    EPOLLET： ET的epoll工作模式；*/
     event.data.ptr = (void *)request;
     
     event.events = EPOLLIN | EPOLLET;

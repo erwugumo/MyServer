@@ -28,7 +28,11 @@ int open_listenfd(int port)
     /* Create a socket descriptor */
     if ((listenfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	    return -1;
- 
+    /*closesocket（一般不会立即关闭而经历TIME_WAIT的过程）后想继续重用该socket：
+
+    BOOL bReuseaddr=TRUE;
+
+    setsockopt(s,SOL_SOCKET ,SO_REUSEADDR,(const char*)&bReuseaddr,sizeof(BOOL));*/
     /* Eliminates "Address already in use" error from bind. */
     if (setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, 
 		   (const void *)&optval , sizeof(int)) < 0)
@@ -36,6 +40,9 @@ int open_listenfd(int port)
 
     /* Listenfd will be an endpoint for all requests to port
        on any IP address for this host */
+    /*置字节字符串s的前n个字节为零。*/
+    /*bzero()好记忆：2个参数；
+    memset()易出错：3个参数，且第二、三个参数易记混淆，如若出现位置互换的情况，C编译器并不能察觉。*/
     bzero((char *) &serveraddr, sizeof(serveraddr));
     serveraddr.sin_family = AF_INET; 
     serveraddr.sin_addr.s_addr = htonl(INADDR_ANY); 
@@ -51,10 +58,11 @@ int open_listenfd(int port)
 }
 
 /*
-    make a socket non blocking. If a listen socket is a blocking socket, after it comes out from epoll and accepts the last connection, the next accpet will block, which is not what we want
+    非阻塞make a socket non blocking. If a listen socket is a blocking socket, after it comes out from epoll and accepts the last connection, the next accpet will block, which is not what we want
 */
 int make_socket_non_blocking(int fd) {
     int flags, s;
+    /*fcntl系统调用可以用来对已打开的文件描述符进行各种控制操作以改变已打开文件的的各种属性*/
     flags = fcntl(fd, F_GETFL, 0);
     if (flags == -1) {
         log_err("fcntl");
