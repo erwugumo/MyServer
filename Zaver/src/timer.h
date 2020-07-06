@@ -3,6 +3,13 @@
  * Copyright (C) Zhu Jiashun
  * Copyright (C) Zaver
  */
+/*Nginx把timer实现成了rbtree，这就很奇怪，
+timer模块需要频繁找最小的key（最早超时的事件）然后处理后删除，
+这个场景下难道不是最小化堆是最好的数据结构么？
+然后通过搜索得知阿里的Tengine将timer的实现了4-heap（四叉最小堆）。
+四叉堆是二叉堆的变种，比二叉堆有更浅的深度和更好的CPU Cache命中率。
+Tengine团队声称用最小堆性能提升比较明显。在Zaver中为了简化实现，使用了二叉堆来实现timer的功能。
+*/
 
 #ifndef ZV_TIMER_H
 #define ZV_TIMER_H

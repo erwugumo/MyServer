@@ -31,8 +31,8 @@
 
 typedef struct zv_http_request_s {
     void *root;
-    int fd;
-    int epfd;
+    int fd;             /* 对应socket */
+    int epfd;           /* epoll的socket记录 */
     char buf[MAX_BUF];  /* ring buffer */
     size_t pos, last;
     int state;

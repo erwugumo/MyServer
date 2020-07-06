@@ -19,6 +19,14 @@ size_t zv_current_msec;
 
 static void zv_time_update() {
     // there is only one thread calling zv_time_update, no need to lock?
+    /*
+    struct timeval
+    {
+        __time_t tv_sec;         //Seconds. 
+        __suseconds_t tv_usec;   //Microseconds. 
+    };
+    其中，tv_sec为Epoch到创建struct timeval时的秒数，tv_usec为微秒数，即秒后面的零头。
+    */
     struct timeval tv;
     int rc;
 

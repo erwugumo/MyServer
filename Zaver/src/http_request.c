@@ -32,7 +32,7 @@ int zv_init_request_t(zv_http_request_t *r, int fd, int epfd, zv_conf_t *cf) {
     r->epfd = epfd;
     r->pos = r->last = 0;
     r->state = 0;
-    r->root = cf->root;
+    r->root = cf->root;         /* root=./html */
     INIT_LIST_HEAD(&(r->list));
 
     return ZV_OK;

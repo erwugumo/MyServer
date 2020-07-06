@@ -54,7 +54,7 @@ static int resize(zv_pq_t *zv_pq, size_t new_size) {
     zv_pq->size = new_size;
     return ZV_OK;
 }
-
+/*交换*/
 static void exch(zv_pq_t *zv_pq, size_t i, size_t j) {
     void *tmp = zv_pq->pq[i];
     zv_pq->pq[i] = zv_pq->pq[j];

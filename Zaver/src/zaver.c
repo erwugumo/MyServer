@@ -176,7 +176,7 @@ int main(int argc, char* argv[]) {
     */
     int epfd = zv_epoll_create(0);
     struct epoll_event event;
-    
+    /*http报头初始化*/
     zv_http_request_t *request = (zv_http_request_t *)malloc(sizeof(zv_http_request_t));
     zv_init_request_t(request, listenfd, epfd, &cf);
     /*其中events表示感兴趣的事件和被触发的事件，可能的取值为：
@@ -190,6 +190,7 @@ int main(int argc, char* argv[]) {
     event.data.ptr = (void *)request;
     
     event.events = EPOLLIN | EPOLLET;
+    /* 注册listen事件 */
     zv_epoll_add(epfd, listenfd, &event);
 
     /*
