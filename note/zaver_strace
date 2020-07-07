@@ -1,0 +1,1066 @@
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nAccept-Encoding:"..., 8123) = 341
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nContent-type: t"..., 126) = 126
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 88) = 88
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(50165), sin_addr=inet_addr("47.101.136.237")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nUser-Agent: Mozi"..., 8123) = 179
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x1856163, 7945)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {}, 1024, 500)            = 0
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(52068), sin_addr=inet_addr("47.100.34.253")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nUser-Agent: Mozi"..., 8123) = 182
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x1856166, 7942)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {}, 1024, 500)            = 0
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(31464), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 545
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x18562d1, 7579)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET /favicon.ico HTTP/1.1\r\nHost:"..., 7579) = 424
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 77) = 77
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 88) = 88
+stat("./html/favicon.ico", 0x7ffee9e2ffe0) = -1 ENOENT (No such file or directory)
+write(5, "HTTP/1.1 404 Not Found\r\nServer: "..., 106) = 106
+write(5, "<html><title>Zaver Error</title>"..., 166) = 166
+read(5, 0x1856479, 7155)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7155)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(31465), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x18562eb, 7553)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 7553) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1856526, 6982)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 6982) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1856761, 6411)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 6411) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x185699c, 5840)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 5840) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1856bd7, 5269)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 5269) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1856e12, 4698)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 4698) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x185704d, 4127)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 4127) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1857288, 3556)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 3556) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x18574c3, 2985)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 2985) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x18576fe, 2414)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 2414) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1857939, 1843)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 1843) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1857b74, 1272)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 1272) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1857daf, 701)                 = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 701) = 571
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+stat("/etc/localtime", {st_mode=S_IFREG|0644, st_size=388, ...}) = 0
+write(5, "HTTP/1.1 304 Not Modified\r\nConne"..., 93) = 93
+read(5, 0x1857fea, 130)                 = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 130) = 130
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+read(5, ": Mozilla/5.0 (iPhone; CPU iPhon"..., 8123) = 441
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[ERROR] (/home/www/Myserver/MySe"..., 111) = 111
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(31466), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33420), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33421), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33422), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33423), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33424), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33425), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33426), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33427), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33428), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33429), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33430), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33431), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33432), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33433), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33434), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33435), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33436), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33437), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33438), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33439), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33440), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33441), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33442), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33443), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33444), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33445), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "", 7603)                       = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 112) = 112
+close(5)                                = 0
+epoll_wait(4, {{EPOLLIN, {u32=25509920, u64=25509920}}}, 1024, -1) = 1
+accept(3, {sa_family=AF_INET, sin_port=htons(33446), sin_addr=inet_addr("175.167.138.121")}, [16]) = 5
+fcntl(5, F_GETFL)                       = 0x2 (flags O_RDWR)
+fcntl(5, F_SETFL, O_RDWR|O_NONBLOCK)    = 0
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 79) = 79
+epoll_ctl(4, EPOLL_CTL_ADD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+accept(3, 0x7ffee9e302f0, [16])         = -1 EAGAIN (Resource temporarily unavailable)
+epoll_wait(4, {{EPOLLIN, {u32=25518240, u64=25518240}}}, 1024, 500) = 1
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 78) = 78
+read(5, "GET / HTTP/1.1\r\nHost: gumo.onlin"..., 8123) = 521
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 85) = 85
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 71) = 71
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 66) = 66
+write(2, "[INFO] (/home/www/Myserver/MySer"..., 87) = 87
+stat("./html/index.html", {st_mode=S_IFREG|0644, st_size=566, ...}) = 0
+write(5, "HTTP/1.1 200 OK\r\nConnection: kee"..., 175) = 175
+open("./html/index.html", O_RDONLY)     = 6
+mmap(NULL, 566, PROT_READ, MAP_PRIVATE, 6, 0) = 0x7ff1b8f60000
+close(6)                                = 0
+write(5, "<!DOCTYPE html>\n<html>\n<head>\n<t"..., 566) = 566
+munmap(0x7ff1b8f60000, 566)             = 0
+read(5, 0x18562b9, 7603)                = -1 EAGAIN (Resource temporarily unavailable)
+epoll_ctl(4, EPOLL_CTL_MOD, 5, {EPOLLIN|EPOLLONESHOT|EPOLLET, {u32=25518240, u64=25518240}}) = 0
+epoll_wait(4, {}, 1024, 500)            = 0
+close(5)                                = 0
+epoll_wait(4, 

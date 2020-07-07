@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
         usage();
         return 0;
     }
-    /*int getopt_long(int argc, char* constargv[], 
+    /*int getopt_long(int argc, char* cons4targv[], 
                      const char*optstring,
                      const struct option*longopts, 
                      int*longindex);
@@ -158,7 +158,6 @@ int main(int argc, char* argv[]) {
     但第一次对其调用write方法时, 如果发送缓冲没问题, 会返回正确写入(发送). 
     但发送的报文会导致对端发送RST报文, 因为对端的socket已经调用了close, 完全关闭, 既不发送, 也不接收数据. 
     所以, 第二次调用write方法(假设在收到RST之后), 会生成SIGPIPE信号, 导致进程退出.
-    /*
     * initialize listening socket
     */
     int listenfd;
@@ -256,7 +255,9 @@ int main(int argc, char* argv[]) {
                     zv_add_timer(request, TIMEOUT_DEFAULT, zv_http_close_conn);
                 }   // end of while of accept
 
-            } else {
+            } 
+            else 
+            {
                 if ((events[i].events & EPOLLERR) ||
                     (events[i].events & EPOLLHUP) ||
                     (!(events[i].events & EPOLLIN))) {
