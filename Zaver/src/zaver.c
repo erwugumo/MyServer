@@ -212,21 +212,23 @@ int main(int argc, char* argv[]) {
 
     /* epoll_wait loop */
     while (1) {
-        time = zv_find_timer();
+        time = zv_find_timer();//查找最早的连接，它最先回超时，time为它超时的剩余时间
         debug("wait time = %d", time);
-        n = zv_epoll_wait(epfd, events, MAXEVENTS, time);
-        zv_handle_expire_timers();
+        n = zv_epoll_wait(epfd, events, MAXEVENTS, time);//保证所有已连接的连接在最大时间内连接成功的话都不会被断开
+        zv_handle_expire_timers();//处理所有超时连接
         
         for (i = 0; i < n; i++) {
             zv_http_request_t *r = (zv_http_request_t *)events[i].data.ptr;
             fd = r->fd;
             
             if (listenfd == fd) {
+                //监听端口动了，说明有新连接到了
                 /* we hava one or more incoming connections */
 
                 int infd;
                 while(1) {
                     infd = accept(listenfd, (struct sockaddr *)&clientaddr, &inlen);
+                    //从listenfd中得到新连接的IP和端口
                     if (infd < 0) {
                         if ((errno == EAGAIN) || (errno == EWOULDBLOCK)) {
                             /* we have processed all incoming connections */
@@ -240,7 +242,7 @@ int main(int argc, char* argv[]) {
                     rc = make_socket_non_blocking(infd);
                     check(rc == 0, "make_socket_non_blocking");
                     log_info("new connection fd %d", infd);
-                    
+                    //为新连接建立结构
                     zv_http_request_t *request = (zv_http_request_t *)malloc(sizeof(zv_http_request_t));
                     if (request == NULL) {
                         log_err("malloc(sizeof(zv_http_request_t))");

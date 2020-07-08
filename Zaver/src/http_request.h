@@ -37,10 +37,10 @@ typedef struct zv_http_request_s {
     size_t pos, last;
     int state;
     void *request_start;
-    void *method_end;   /* not include method_end*/
+    void *method_end;   /* not include method_end */
     int method;
     void *uri_start;
-    void *uri_end;      /* not include uri_end*/ 
+    void *uri_end;      /* not include uri_end */ 
     void *path_start;
     void *path_end;
     void *query_start;

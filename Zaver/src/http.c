@@ -47,6 +47,8 @@ mime_type_t zaver_mime[] =
 };
 
 void do_request(void *ptr) {
+    //由于参数为void，所以需要强制转换为zv_http_request_t
+    //ptr就是包头
     zv_http_request_t *r = (zv_http_request_t *)ptr;
     int fd = r->fd;
     int rc, n;
@@ -57,11 +59,19 @@ void do_request(void *ptr) {
     size_t remain_size;
     
     zv_del_timer(r);
+    //删除原超时节点
     for(;;) {
         plast = &r->buf[r->last % MAX_BUF];
         remain_size = MIN(MAX_BUF - (r->last - r->pos) - 1, MAX_BUF - r->last % MAX_BUF);
 
         n = read(fd, plast, remain_size);
+        /*
+        ssize_t read (int fd, void *buf, size_t count);
+        参数count是请求读取的字节数，读上来的数据保存在缓冲区buf中，同时文件的当前读写位置向后移。
+        注意这个读写位置和使用C标准I/O库时的读写位置有可能不同，这个读写位置是记在内核中的，而使用C标准I/O库时的读写位置是用户空间I/O缓冲区中的位置。
+        比如用fgetc读一个字节，fgetc有可能从内核中预读1024个字节到I/O缓冲区中，再返回第一个字节，这时该文件在内核中记录的读写位置是1024，而在FILE结构体中记录的读写位置是1。
+        注意返回值类型是ssize_t，表示有符号的size_t，这样既可以返回正的字节数、0（表示到达文件末尾）也可以返回负值-1（表示出错）。
+        */
         check(r->last - r->pos < MAX_BUF, "request buffer overflow!");
 
         if (n == 0) {   
@@ -167,6 +177,7 @@ static void parse_uri(char *uri, int uri_length, char *filename, char *querystri
     uri[uri_length] = '\0';
 
     char *question_mark = strchr(uri, '?');
+    /*在参数str所指向的字符串中搜索第一次出现字符c（一个无符号字符）的位置。*/
     int file_length;
     if (question_mark) {
         file_length = (int)(question_mark - uri);
@@ -189,11 +200,33 @@ static void parse_uri(char *uri, int uri_length, char *filename, char *querystri
     }
 
     debug("before strncat, filename = %s, uri = %.*s, file_len = %d", filename, file_length, uri, file_length);
+    /*
+    char *strncat(char *dest, const char *src, size_t n)
+    dest -- 指向目标数组，该数组包含了一个 C 字符串，且足够容纳追加后的字符串，包括额外的空字符。
+    src -- 要追加的字符串。
+    n -- 要追加的最大字符数。
+    */
     strncat(filename, uri, file_length);
 
     char *last_comp = strrchr(filename, '/');
     char *last_dot = strrchr(last_comp, '.');
+    /*
+    char *strrchr(const char *str, int c)
+    在参数 str 所指向的字符串中搜索最后一次出现字符 c（一个无符号字符）的位置。
+    str -- C 字符串。
+    c -- 要搜索的字符。以 int 形式传递，但是最终会转换回 char 形式。
+    */
     if (last_dot == NULL && filename[strlen(filename)-1] != '/') {
+        /*将两个char类型连接。
+        例如：
+        char d[20]="Golden";
+        char s[20]="View";
+        strcat(d,s);
+        //打印d
+        printf("%s",d);
+        输出 d 为 GoldenView （中间无空格）
+        d和s所指内存区域不可以重叠且d必须有足够的空间来容纳s的字符串。
+        返回指向d的指针。*/
         strcat(filename, "/");
     }
     

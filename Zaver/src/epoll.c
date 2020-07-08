@@ -8,6 +8,21 @@
 #include "dbg.h"
 
 struct epoll_event *events;
+/*
+struct epoll_event
+{
+  uint32_t events;    //Epoll events 
+  epoll_data_t data;     //User data variable 
+} __attribute__ ((__packed__));
+
+typedef union epoll_data
+{
+  void *ptr;//结构体指针，指向一个结构体，但不知道是什么，所以只能是void
+  int fd;
+  uint32_t u32;
+  uint64_t u64;
+} epoll_data_t;
+*/
 
 int zv_epoll_create(int flags) {
     int fd = epoll_create1(flags);
