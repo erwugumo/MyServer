@@ -31,7 +31,19 @@ int zv_http_parse_request_line(zv_http_request_t *r) {
     } state;
 
     state = r->state;
-
+    
+    //GET / HTTP/1.1
+    //Host: gumo.online:3000
+    //Connection: keep-alive
+    //Cache-Control: max-age=0
+    //Upgrade-Insecure-Requests: 1
+    //User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
+    //Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+    //Accept-Encoding: gzip, deflate
+    //Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+    //Cookie: wp-settings-1=libraryContent%3Dbrowse%26editor%3Dhtml%26hidetb%3D1%26mfold%3Do; wp-settings-time-1=1590339643
+    //If-Modified-Since: Tue, 07 Jul 2020 17:39:48 GMT
+    
     // log_info("ready to parese request line, start = %d, last= %d", (int)r->pos, (int)r->last);
     for (pi = r->pos; pi < r->last; pi++) {
         p = (u_char *)&r->buf[pi % MAX_BUF];

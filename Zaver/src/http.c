@@ -269,7 +269,11 @@ static void serve_static(int fd, char *filename, size_t filesize, zv_http_out_t 
     const char *file_type;
     const char *dot_pos = strrchr(filename, '.');
     file_type = get_file_type(dot_pos);
-
+    //HTTP/1.1 200 OK
+    //Server: Zaver
+    //ontent-type: text/html
+    //Content-length: 566
+    //Last-Modified: Tue, 07 Jul 2020 17:39:48 GMT
     sprintf(header, "HTTP/1.1 %d %s\r\n", out->status, get_shortmsg_from_status_code(out->status));
 
     if (out->keep_alive) {

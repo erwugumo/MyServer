@@ -86,4 +86,22 @@ TCP/IP只是一个协议栈，就像操作系统的运行机制一样，必须�
 ② 同时也意味着，数据流不是一个个应用层的数据包，对于接收，可能收到的是一个完整的数据包，也可能了收到1/3个数据包，也可能收到4/5个数据包，
 或者一个完整的数据包，也可能收到1.5个或3.2个数据包，这是不确定的。需要自己在编程中，自己解析确定收到的是否完整的数据包，如果不足，需要继续接收；如果多余，需要分拆成多个包。
 
+tcp建立连接三次握手，主动方发送请求syn，server接收到信息，返回带有数据包的信息syn_sent，然后接收到信息的一方再发送确认信息ACK给server，第三次握手失败（超时）时，
+服务器并不会重传ack报文，server会发送RTS报文段并主动关闭至closed，以防止syn洪泛攻击。
+
+syn洪泛攻击
+
+通俗的理解是：当第三次握手没有发送确认信息时，等待一段时间后，主机就会断开之前的半开连接并回收资源，这为dos（deny of service）攻击埋下隐患，
+当主动方主动发送大量的syn数据包，但并不做出第三次握手响应，server就会为这些syn包分配资源（但并未使用），就会使server占用大量内存，使server连接环境耗尽，这就是syn洪泛攻击
+
+GET / HTTP/1.1
+Host: gumo.online:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+Cookie: wp-settings-1=libraryContent%3Dbrowse%26editor%3Dhtml%26hidetb%3D1%26mfold%3Do; wp-settings-time-1=1590339643
+
 
