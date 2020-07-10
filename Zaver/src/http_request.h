@@ -30,12 +30,12 @@
 #define MAX_BUF 8124
 
 typedef struct zv_http_request_s {
-    void *root;
-    int fd;             /* 对应socket */
+    void *root;         /* 请求文件根路径 */
+    int fd;             /* 请求对应socket */
     int epfd;           /* epoll的socket记录 */
-    char buf[MAX_BUF];  /* ring buffer */
-    size_t pos, last;
-    int state;
+    char buf[MAX_BUF];  /* http请求内容 */
+    size_t pos, last;   /* buf的头尾指针 */
+    int state;          /* 请求状态 */
     void *request_start;
     void *method_end;   /* not include method_end */
     int method;
@@ -55,7 +55,8 @@ typedef struct zv_http_request_s {
     void *cur_header_value_start;
     void *cur_header_value_end;
 
-    void *timer;
+    void *timer;/* 对应小顶堆的节点 */
+
 } zv_http_request_t;
 
 typedef struct {

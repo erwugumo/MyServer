@@ -62,6 +62,7 @@ void do_request(void *ptr) {
     //删除原超时节点
     for(;;) {
         plast = &r->buf[r->last % MAX_BUF];
+        
         remain_size = MIN(MAX_BUF - (r->last - r->pos) - 1, MAX_BUF - r->last % MAX_BUF);
 
         n = read(fd, plast, remain_size);

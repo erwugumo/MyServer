@@ -290,6 +290,15 @@ done:
     return ZV_OK;
 }
 
+//Host: gumo.online:3000
+//Connection: keep-alive
+//Upgrade-Insecure-Requests: 1
+//User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
+//Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+//Accept-Encoding: gzip, deflate
+//Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+//Cookie: wp-settings-1=libraryContent%3Dbrowse%26editor%3Dhtml%26hidetb%3D1%26mfold%3Do; wp-settings-time-1=1590339643
+
 int zv_http_parse_request_body(zv_http_request_t *r) {
     u_char ch, *p;
     size_t pi;
@@ -304,7 +313,12 @@ int zv_http_parse_request_body(zv_http_request_t *r) {
         sw_crlf,
         sw_crlfcr
     } state;
-
+    /*
+    Unix系统里，每行结尾只有“<换行>”，即"\n"；
+    Windows系统里面，每行结尾是“<回车><换行>”，即“\r\n”；
+    Mac系统里，每行结尾是“<回车>”，即"\r"；
+    LF='\n'   CR='\r'
+    */
     state = r->state;
     check(state == 0, "state should be 0");
 

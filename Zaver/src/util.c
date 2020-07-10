@@ -37,7 +37,14 @@ int open_listenfd(int port)
     if (setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, 
 		   (const void *)&optval , sizeof(int)) < 0)
 	    return -1;
+    /*
+    setsockopt( int socket, int level, int option_name,const void *option_value, size_t option_len);  
+    第一个参数socket是套接字描述符。
 
+    第二个参数level是被设置的选项的级别，如果想要在套接字级别上设置选项，就必须把level设置为SOL_SOCKET。
+
+    第三个参数 option_name指定准备设置的选项，option_name可以有哪些常用取值，这取决于level，以linux 2.6内核为例（在不同的平台上，这种关系可能会有不同）
+    */
     /* Listenfd will be an endpoint for all requests to port
        on any IP address for this host */
     /*置字节字符串s的前n个字节为零。*/

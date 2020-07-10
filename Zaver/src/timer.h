@@ -23,7 +23,7 @@ Tengine团队声称用最小堆性能提升比较明显。在Zaver中为了简�
 typedef int (*timer_handler_pt)(zv_http_request_t *rq);
 
 typedef struct zv_timer_node_s{
-    size_t key;
+    size_t key;     /* http连接超时时刻 */
     int deleted;    /* if remote client close the socket first, set deleted to 1 */
     timer_handler_pt handler;
     zv_http_request_t *rq;
