@@ -18,7 +18,7 @@ Tengine团队声称用最小堆性能提升比较明显。在Zaver中为了简�
 #include "http_request.h"
 
 #define ZV_TIMER_INFINITE -1
-#define TIMEOUT_DEFAULT 500     /* ms */
+#define TIMEOUT_DEFAULT 5000     /* ms */
 
 typedef int (*timer_handler_pt)(zv_http_request_t *rq);
 

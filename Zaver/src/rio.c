@@ -54,6 +54,12 @@ ssize_t rio_writen(int fd, void *usrbuf, size_t n)
         if ((nwritten = write(fd, bufp, nleft)) <= 0) {
             if (errno == EINTR)  /* interrupted by sig handler return */
                 nwritten = 0;    /* and call write() again */
+            else if(errno==EAGAIN) /* EAGAIN : Resource temporarily unavailable*/   
+            {  
+                sleep(1);//等待一秒，希望发送缓冲区能得到释放  
+                continue;  
+                log_err("[SeanSend]error errno==EAGAIN continue\n");  
+            } 
             else {
                 log_err("errno == %d\n", errno);
                 return -1;       /* errorno set by write() */
