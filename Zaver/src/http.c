@@ -82,6 +82,7 @@ void do_request(void *ptr) {
         }
 
         if (n < 0) {
+            /*对非阻塞socket而言，EAGAIN不是一种错误*/
             if (errno != EAGAIN) {
                 log_err("read err, and errno = %d", errno);
                 goto err;
@@ -126,19 +127,80 @@ void do_request(void *ptr) {
         check(rc == ZV_OK, "zv_init_out_t");
 
         parse_uri(r->uri_start, r->uri_end - r->uri_start, filename, NULL);
-
+        /*
+        定义函数:    int stat(const char *file_name, struct stat *buf);
+        函数说明:    通过文件名filename获取文件信息，并保存在buf所指的结构体stat中
+        返回值:     执行成功则返回0，失败返回-1，错误代码存于errno
+        • 	必需。
+        • 规定文件的路径。
+        • 该函数将返回一个包含下列元素的数组：
+        • [0] 或 [dev] - 设备编号
+        • [1] 或 [ino] - inode 编号
+        • [2] 或 [mode] - inode 保护模式
+        • [3] 或 [nlink] - 连接数目
+        • [4] 或 [uid] - 所有者的用户 ID
+        • [5] 或 [gid] - 所有者的组 ID
+        • [6] 或 [rdev] - inode 设备类型
+        • [7] 或 [size] - 文件大小的字节数
+        • [8] 或 [atime] - 上次访问时间（Unix 时间戳）
+        • [9] 或 [mtime] - 上次修改时间（Unix 时间戳）
+        • [10] 或 [ctime] - 上次 inode 改变时间（Unix 时间戳）
+        • [11] 或 [blksize] - 文件系统 IO 的块大小（如果支持）
+        • [12] 或 [blocks] - 所占据块的数目
+        struct stat {
+            dev_t         st_dev;      // device 
+            ino_t         st_ino;      // inode 
+            mode_t        st_mode;     // protection 
+            nlink_t       st_nlink;    // number of hard links 
+            uid_t         st_uid;      // user ID of owner 
+            gid_t         st_gid;      // group ID of owner 
+            dev_t         st_rdev;     // device type (if inode device) 
+            off_t         st_size;     // total size, in bytes 
+            blksize_t     st_blksize;  // blocksize for filesystem I/O 
+            blkcnt_t      st_blocks;   // number of blocks allocated 
+            time_t        st_atime;    // time of last access 
+            time_t        st_mtime;    // time of last modification 
+            time_t        st_ctime;    // time of last status change 
+        };
+        错误代码:
+            ENOENT         参数file_name指定的文件不存在
+            ENOTDIR        路径中的目录存在但却非真正的目录
+            ELOOP          欲打开的文件有过多符号连接问题，上限为16符号连接
+            EFAULT         参数buf为无效指针，指向无法存在的内存空间
+            EACCESS        存取文件时被拒绝
+            ENOMEM         核心内存不足
+            ENAMETOOLONG   参数file_name的路径名称太长
+        注释：
+        从这个函数返回的结果与服务器到服务器的结果是不相同的。这个数组包含了数字索引、名称索引或同时包含上述二者。
+        注释：
+        该函数的结果会被缓存。
+        请使用 clearstatcache() 来清除缓存。
+        */
         if(stat(filename, &sbuf) < 0) {
             do_error(fd, filename, "404", "Not Found", "zaver can't find the file");
             continue;
         }
-
+        /*
+        S_ISREG是否是一个常规文件.
+        S_ISDIR是否是一个目录
+        S_ISCHR是否是一个字符设备.
+        S_ISBLK是否是一个块设备
+        S_ISFIFO是否是一个FIFO文件.
+        S_ISSOCK是否是一个SOCKET文件.
+        S_IRUSR：用户读权限
+        S_IWUSR：用户写权限
+        S_IRGRP：用户组读权限
+        S_IWGRP：用户组写权限
+        S_IROTH：其他组都权限
+        S_IWOTH：其他组写权限
+        */
         if (!(S_ISREG(sbuf.st_mode)) || !(S_IRUSR & sbuf.st_mode))
         {
             do_error(fd, filename, "403", "Forbidden",
                     "zaver can't read the file");
             continue;
         }
-        
+        //上次修改时间
         out->mtime = sbuf.st_mtime;
 
         zv_http_handle_header(r, out);
@@ -268,6 +330,7 @@ static void serve_static(int fd, char *filename, size_t filesize, zv_http_out_t 
     struct tm tm;
     
     const char *file_type;
+    /*该函数返回 str 中最后一次出现字符 c 的位置。*/
     const char *dot_pos = strrchr(filename, '.');
     file_type = get_file_type(dot_pos);
     //HTTP/1.1 200 OK
@@ -307,6 +370,17 @@ static void serve_static(int fd, char *filename, size_t filesize, zv_http_out_t 
     int srcfd = open(filename, O_RDONLY, 0);
     check(srcfd > 2, "open error");
     // can use sendfile
+    /*void* mmap ( void * addr , size_t len , int prot , int flags , int fd , off_t offset ) 
+    mmap的作用是映射文件描述符fd指定文件的 [off,off + len]区域至调用进程的[addr, addr + len]的内存区域
+    参数fd为即将映射到进程空间的文件描述字，一般由open()返回，同时，fd可以指定为-1，此时须指定flags参数中的
+    MAP_ANON，表明进行的是匿名映射（不涉及具体的文件名，避免了文件的创建及打开，很显然只能用于具有亲缘关系的进程间通信）。
+    len是映射到调用进程地址空间的字节数，它从被映射文件开头offset个字节开始算起。
+    prot 参数指定共享内存的访问权限。可取如下几个值的或：PROT_READ（可读） , PROT_WRITE （可写）, PROT_EXEC （可执行）, PROT_NONE（不可访问）。
+    flags由以下几个常值指定：MAP_SHARED , MAP_PRIVATE , MAP_FIXED，其中，MAP_SHARED , MAP_PRIVATE必选其一，而MAP_FIXED则不推荐使用。
+    offset参数一般设为0，表示从文件头开始映射。
+    参数addr指定文件应被映射到进程空间的起始地址，一般被指定一个空指针，此时选择起始地址的任务留给内核来完成。
+    函数的返回值为最后文件映射到进程空间的地址，进程可直接操作起始地址为该值的有效地址。
+    */
     char *srcaddr = mmap(NULL, filesize, PROT_READ, MAP_PRIVATE, srcfd, 0);
     check(srcaddr != (void *) -1, "mmap error");
     close(srcfd);

@@ -45,6 +45,12 @@ ssize_t rio_writen(int fd, void *usrbuf, size_t n)
     char *bufp = (char *)usrbuf;
         
     while (nleft > 0) {
+        /*ssize_t write(int fd, const void *buf, size_t nbyte);
+        fd：文件描述符；
+        buf：指定的缓冲区，即指针，指向一段内存单元；
+        nbyte：要写入文件指定的字节数；
+        返回值：写入文档的字节数（成功）；-1（出错）
+        */
         if ((nwritten = write(fd, bufp, nleft)) <= 0) {
             if (errno == EINTR)  /* interrupted by sig handler return */
                 nwritten = 0;    /* and call write() again */

@@ -252,7 +252,7 @@ int main(int argc, char* argv[]) {
                     zv_init_request_t(request, infd, epfd, &cf);
                     event.data.ptr = (void *)request;
                     event.events = EPOLLIN | EPOLLET | EPOLLONESHOT;
-
+                    //只监听一次事件，当监听完这次事件之后，如果还需要继续监听这个socket的话，需要再次把这个socket加入到EPOLL队列里。
                     zv_epoll_add(epfd, infd, &event);
                     zv_add_timer(request, TIMEOUT_DEFAULT, zv_http_close_conn);
                 }   // end of while of accept

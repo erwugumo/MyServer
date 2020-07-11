@@ -65,13 +65,15 @@ void zv_http_handle_header(zv_http_request_t *r, zv_http_out_t *o) {
     zv_http_header_handle_t *header_in;
     int len;
 
-    list_for_each(pos, &(r->list)) {
+    list_for_each(pos, &(r->list)) 
+    {
         hd = list_entry(pos, zv_http_header_t, list);
         /* handle */
 
         for (header_in = zv_http_headers_in; 
             strlen(header_in->name) > 0;
-            header_in++) {
+            header_in++) 
+            {
             if (strncmp(hd->key_start, header_in->name, hd->key_end - hd->key_start) == 0) {
             
                 //debug("key = %.*s, value = %.*s", hd->key_end-hd->key_start, hd->key_start, hd->value_end-hd->value_start, hd->value_start);
@@ -107,23 +109,44 @@ static int zv_http_process_ignore(zv_http_request_t *r, zv_http_out_t *out, char
 
 static int zv_http_process_connection(zv_http_request_t *r, zv_http_out_t *out, char *data, int len) {
     (void) r;
+    /*strncasecmp()用来比较参数s1 和s2 字符串前n个字符，比较时会自动忽略大小写的差异。
+        若参数s1 和s2 字符串相同则返回0。s1 若大于s2 则返回大于0 的值，s1 若小于s2 则返回小于0 的值。
+    */
     if (strncasecmp("keep-alive", data, len) == 0) {
         out->keep_alive = 1;
     }
 
     return ZV_OK;
 }
+/*
+大家都知道客户端浏览器是有缓存的，里面存放之前访问过的一些网页文件。
+例如IE，会把缓存文件存到“C:\Documents and Settings\zh2000g\Local Settings\Temporary Internet Files”
+这样类似的目录里。
+其实缓存里存储的不只是网页文件，还有服务器发过来的该文件的最后服务器修改时间。
 
+If-Modified-Since是标准的HTTP请求头标签，在发送HTTP请求时，把浏览器端缓存页面的最后修改时间一起发到服务器去，服务器会把这个时间与服务器上实际文件的最后修改时间进行比较。
+
+如果时间一致，那么返回HTTP状态码304（不返回文件内容），客户端接到之后，就直接把本地缓存文件显示到浏览器中。
+
+如果时间不一致，就返回HTTP状态码200和新的文件内容，客户端接到之后，会丢弃旧文件，把新文件缓存起来，并显示到浏览器中。
+*/
 static int zv_http_process_if_modified_since(zv_http_request_t *r, zv_http_out_t *out, char *data, int len) {
     (void) r;
     (void) len;
 
     struct tm tm;
+    /*按照特定时间格式将字符串转换为时间类型*/
+    /*
+    这个data是request中if_modified_since的值，是客户端的缓存的保存时间
+    */
     if (strptime(data, "%a, %d %b %Y %H:%M:%S GMT", &tm) == (char *)NULL) {
         return ZV_OK;
     }
+    /*mktime()用来将参数timeptr所指的tm结构数据转换成从公元1970年1月1日0时0分0 秒算起至今的UTC时间所经过的秒数。*/
     time_t client_time = mktime(&tm);
-
+    /*
+    out->mtime是request需要的文件的实际修改时间
+    */
     double time_diff = difftime(out->mtime, client_time);
     if (fabs(time_diff) < 1e-6) {
         // log_info("content not modified clienttime = %d, mtime = %d\n", client_time, out->mtime);

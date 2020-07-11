@@ -62,7 +62,9 @@ typedef struct zv_http_request_s {
 typedef struct {
     int fd;
     int keep_alive;
+    //服务器文件的实际修改时间
     time_t mtime;       /* the modified time of the file*/
+    //服务器文件是否被修改
     int modified;       /* compare If-modified-since field with mtime to decide whether the file is modified since last time*/
 
     int status;
