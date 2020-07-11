@@ -43,6 +43,7 @@ mime_type_t zaver_mime[] =
     {".gz", "application/x-gzip"},
     {".tar", "application/x-tar"},
     {".css", "text/css"},
+    {".svg","image/svg+xml"},
     {NULL ,"text/plain"}
 };
 
