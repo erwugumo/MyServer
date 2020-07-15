@@ -477,3 +477,22 @@ class StockFactory:public boost::enable_shared_from_this<StockFactory>,boost::no
 
 }
 ```
+函数也不行：
+```cpp
+void f2();
+void f1()
+{
+	f2();
+	cout << "1" << endl;
+}
+void f2()
+{
+	f1();
+	cout << "2" << endl;
+}
+int main() {
+	f1();//死循环，栈溢出
+	f2();
+	return 0;
+}
+```
