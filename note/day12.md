@@ -123,3 +123,110 @@ mutex分递归和非递归两种，也叫可重入和非可重入。它们作为
 解决析构不但需要用shared_ptr管理vector，还需要用shared_ptr管理vector中的资源。
 
 条件变量：
+
+一个或多个线程等待某个布尔值为真，等待别的线程唤醒该线程，这里等待的就是条件变量，学名为管程。
+
+条件变量只有一种正确的使用方式，在wait端：
+必须与mutex一起使用，该表达式的读写需要受到mutex保护。
+在mutex已经上锁的时候才能调用wait。
+把判断布尔条件和wait()放到while循环中。
+eg.
+```cpp
+muduo::MutexLock mutex;
+muduo::Condition cond(mutex);
+std::deque<int> queue;//双端队列
+
+int dequeue()
+{
+    MutexLockGuard lock(mutex);
+    while(queue.empty())//必须是while，必须是判断之后再wait
+    {
+        cond.wait();//wait函数包括解锁unlock和wait，是原子操作
+        //wait执行后返回时继续加锁
+    }
+    //lock
+    //while 防止虚假唤醒
+    //unlock+wait 防止错过signal
+    //waitreturn+lock 对应第一个lock
+    //run
+    assert(!queue.empty());
+    int top=queue.front();
+    queue.pop_front();
+    return top;
+}
+```
+
+这里必须使用while而不能用if。原因是spurious wakeup，即虚假唤醒。
+虚假唤醒的定义是“This means that when you wait on a condition variable,the wait may (occasionally) return when no thread  pecifically broadcast or signaled that condition variable.”，即即使没有线程broadcast 或者signal条件变量，wait也可能偶尔返回。
+
+也就是说，使用while而不是if，是为了处理发生虚假唤醒之后不要有错误的行为，而不是避免虚假唤醒的。
+
+为什么wait前要解锁？
+不解锁的话其他线程得不到锁，没法修改队列。
+为什么是原子操作？
+若不是原子操作，先解锁；然后其他进程发给该进程一个结束等待的信号，但此时wait还没开始，信号被错过，之后再一直等待。先解锁再wait成为原子操作可以防止任何信号的错过。
+真正的wait函数是夹在俩互斥量之间的。
+
+对于signal/broadcast端：
+不一定要在mutex已上锁的情况下调用signal(理论上)。
+在signal之前一般要修改布尔表达式
+修改布尔表达式一般要mutex保护
+注意区分signal和broadcast：signal一般表示资源可用，看做单播；broadcast一般表示状态变化，广播。
+
+```cpp
+void enqueue(int x)
+{
+    MutexLockGuard lock(mutex);
+    queue.push_back(x);
+    cond.notify();//可以移出临界区
+}
+```
+
+若wait返回和加锁不是原子操作，那存在这样一种情况：线程A在wait，线程B发broadcast，此时线程A应加锁然后操作，但是这个时候线程B的锁用完了被线程C抢走，线程C将资源夺走，队列变为空，之后释放锁，这时线程A抢回锁，但是队列为空，又得继续执行while，等待。这就是一次虚假唤醒。
+
+若notify的条件改为从0到1才notify而不是每pushback才notify，则会出现以下情况：
+考虑下面的执行顺序: //queue 里有 0 个元素 t1 deq ---> wait t2 deq ---> wait t4 enq ----> queue 0 -> 1 signal //唤醒 t1, 但 t1 没有立刻执行,而是 t4 继续 enq t4 enq ----> queue 1 -> 2 no signal t1 继续deq ----> queue 2 -> 1 t2 still waits //unexpected behavior! // queue 1 容器里有东西,但 t2 还在 wait 。正确的行为本应该是t2被唤醒继续 deq 的。
+
+简言之，如果enqueue线程执行过快，如果有一个dequeue线程没有来得及唤醒（其他dequeue线程抢先了），那么它将一直被阻塞（饿死），直到queue的size再次重复0到1的过程
+
+为什么条件变量要配合mutex使用？
+因为条件变量一定有着判断某个布尔值的操作。这个布尔值是全局变量，其他进程可见。，所以在查看该布尔值的时候要锁住，防止查看完进wait前布尔值变了导致不应该进wait的发生。
+
+总而言之，为了避免因条件判断语句与其后的正文或wait语句之间的间隙而产生的漏判或误判，所以用一个mutex来保证: 对于某个cond的包括(判断,修改)在内的任何有关操作某一时刻只有一个线程在访问。也就是说条件变量本身就是一个竞争资源，这个资源的作用是对其后程序正文的执行权，于是用一个锁来保护。这样就关闭了条件检查和线程进入休眠状态等待条件改变这两个操作之间的时间通道，这样线程就不会有任何变化。
+
+条件变量是非常低级的同步原语，很少直接使用，一般都是用它来实现高层的同步措施，如BlockingQueue或者CountDownLatch(倒计时)。
+
+倒计时很常用：
+主线程发起多个子线程，直到所有子线程全结束，主线程继续进行，多用于初始化
+主线程发起多个子线程，子线程都在等主线程，主线程完成其他任务通知所有子线程一起执行，类似起跑命令
+
+```cpp
+class CountDownLatch:boost::noncopyable
+{
+    public:
+    explicit CountDownLatch(int count);//倒数几次
+    void wait();
+    void countDown();
+
+    private:
+    mutable MytexLock mutex_;
+    Condition condition_;
+    int count_;
+}
+
+void CountDownLatch::wait()
+{
+    MutexLockGuard lock(mutex_);
+    while(count_>0)
+        condition_.wait();
+}
+void CountDownLatch::countDown()
+{
+    MutexLockGuard lock(mutex_);
+    --count;
+    if(count_==0)
+    condition_.notifyALL();
+}
+```
+主线程用wait阻塞，子线程每个都用countDown，可以实现第一种情况；
+子线程用wait阻塞，主线程用countDown，可以实现第二种情况。
