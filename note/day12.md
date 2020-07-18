@@ -139,10 +139,10 @@ std::deque<int> queue;//双端队列
 int dequeue()
 {
     MutexLockGuard lock(mutex);
-    while(queue.empty())//必须是while，必须是判断之后再wait
+    while(queue.empty())//必须是while，必须是判断之后再wait，布尔值，或者说条件，condition
     {
         cond.wait();//wait函数包括解锁unlock和wait，是原子操作
-        //wait执行后返回时继续加锁
+        //wait执行后返回时继续加锁，wait叫条件变量
     }
     //lock
     //while 防止虚假唤醒
@@ -230,3 +230,259 @@ void CountDownLatch::countDown()
 ```
 主线程用wait阻塞，子线程每个都用countDown，可以实现第一种情况；
 子线程用wait阻塞，主线程用countDown，可以实现第二种情况。
+
+MutexLock的实现
+```cpp
+class MutexLock:boost::noncopyable
+{
+    public:
+    MutexLock():holder_(0){
+        pthread_mutex_init(&mutex_,NULL);
+    }
+    ~MutexLock()
+    {
+        assert(holder_==0);
+        pthread_mutex_destory(&mutex);
+    }
+    bool isLockedByThisThread()
+    {
+        return holder_==CurrentThread::tid();
+    }
+    void assertLocked()
+    {
+        assert(isLockedByThisThread());
+    }
+    void lock()//仅供MutexLockGuard调用，严禁用户代码调用
+    {
+        pthread_mutex_lock(&mutex);
+        holder_=CurrentThread::tid();//这两行不能反
+    }
+    void unlock()//仅供MutexLockGuard调用，严禁用户代码调用
+    {
+        holder_=0；
+        pthread_mutex_unlocked(&mutex_);//这两行不能反，保证holder_的改变在mutex锁内
+    }
+    pthread_mutex_t* getPthreadMutex()
+    {
+        return &mutex_;
+    }
+    private:
+    pthread_mutex_t mutex_;
+    pid_t holder_;
+}
+
+class MutexLockGuard:boost::noncopyable
+{
+    public:
+    explicit MutexLockGuard(MutexLock& mutex):mutex_(mutex)
+    {
+        mutex_.lock();
+    }
+    ~MutexLockGuard()
+    {
+        mutex_.unlock();
+    }
+    private:
+    MutexLock& mutex_;
+}
+```
+
+条件变量：
+```cpp
+class Condition:boost::noncopyable
+{
+    public:
+    explicit Condition(MutexLock& mutex):mutex_(mutex)
+    {
+        pthread_cond_init(&pcond_,NULL);
+    }
+    ~Condition(){ pthread_cond_destroy(&pcond_); }
+    void wait() { pthread_cond_wait(&pcond_,mutex_.getPthreadMutex()); }
+    void notify() { pthread_cond_signal(&pcond_); }
+    void notifyAll() { pthread_cond_broadcast(&pcond_) };
+
+    private:
+    MutexLock& mutex_;
+    pthread_cond_t pcond_;3
+}
+```
+
+注意初始化顺序要和声明顺序保持一致。
+
+线程安全的Singleton实现
+
+Singleton，就是单例模式。
+单例 Singleton 是设计模式的一种，其特点是只提供唯一一个类的实例,具有全局变量的特点，在任何位置都可以通过接口获取到那个唯一实例;
+具体运用场景如：
+
+设备管理器，系统中可能有多个设备，但是只有一个设备管理器，用于管理设备驱动;
+数据池，用来缓存数据的数据结构，需要在一处写，多处读取或者多处写，多处读取;
+
+C++单例的实现
+
+2.1 基础要点
+全局只有一个实例：static 特性，同时禁止用户自己声明并定义实例（把构造函数设为 private）
+线程安全
+禁止赋值和拷贝
+用户通过接口获取实例：使用 static 类成员函数
+
+2.2 C++ 实现单例的几种方式
+2.2.1 有缺陷的懒汉式
+懒汉式(Lazy-Initialization)的方法是直到使用时才实例化对象，也就说直到调用get_instance() 方法的时候才 new 一个单例的对象。好处是如果被调用就不会占用内存。
+```cpp
+#include <iostream>
+// version1:
+// with problems below:
+// 1. thread is not safe
+// 2. memory leak
+
+class Singleton{
+private:
+    Singleton(){
+        std::cout<<"constructor called!"<<std::endl;
+    }
+    Singleton(Singleton&)=delete;
+    Singleton& operator=(const Singleton&)=delete;
+    static Singleton* m_instance_ptr;
+public:
+    ~Singleton(){
+        std::cout<<"destructor called!"<<std::endl;
+    }
+    static Singleton* get_instance(){
+        if(m_instance_ptr==nullptr){
+              m_instance_ptr = new Singleton;
+        }
+        return m_instance_ptr;
+    }
+    void use() const { std::cout << "in use" << std::endl; }
+};
+
+Singleton* Singleton::m_instance_ptr = nullptr;
+
+int main(){
+    Singleton* instance = Singleton::get_instance();
+    Singleton* instance_2 = Singleton::get_instance();
+    return 0;
+}
+```
+
+可以看到，获取了两次类的实例，却只有一次类的构造函数被调用，表明只生成了唯一实例，这是个最基础版本的单例实现，他有哪些问题呢？
+
+线程安全的问题,当多线程获取单例时有可能引发竞态条件：第一个线程在if中判断 m_instance_ptr是空的，于是开始实例化单例;同时第2个线程也尝试获取单例，这个时候判断m_instance_ptr还是空的，于是也开始实例化单例;这样就会实例化出两个对象,这就是线程安全问题的由来; 解决办法:加锁
+
+内存泄漏. 注意到类中只负责new出对象，却没有负责delete对象，因此只有构造函数被调用，析构函数却没有被调用;因此会导致内存泄漏。解决办法： 使用共享指针;
+
+线程安全、内存安全的懒汉式单例 （智能指针，锁）
+```cpp
+#include <iostream>
+#include <memory> // shared_ptr
+#include <mutex>  // mutex
+
+// version 2:
+// with problems below fixed:
+// 1. thread is safe now
+// 2. memory doesn't leak
+
+class Singleton{
+public:
+    typedef std::shared_ptr<Singleton> Ptr;
+    ~Singleton(){
+        std::cout<<"destructor called!"<<std::endl;
+    }
+    Singleton(Singleton&)=delete;
+    Singleton& operator=(const Singleton&)=delete;
+    static Ptr get_instance(){
+
+        // "double checked lock"
+        if(m_instance_ptr==nullptr){
+            std::lock_guard<std::mutex> lk(m_mutex);
+            if(m_instance_ptr == nullptr){
+              m_instance_ptr = std::shared_ptr<Singleton>(new Singleton);
+            }
+        }
+        return m_instance_ptr;
+    }
+
+
+private:
+    Singleton(){
+        std::cout<<"constructor called!"<<std::endl;
+    }
+    static Ptr m_instance_ptr;
+    static std::mutex m_mutex;
+};
+
+// initialization static variables out of class
+Singleton::Ptr Singleton::m_instance_ptr = nullptr;
+std::mutex Singleton::m_mutex;
+
+int main(){
+    Singleton::Ptr instance = Singleton::get_instance();
+    Singleton::Ptr instance2 = Singleton::get_instance();
+    return 0;
+}
+```
+shared_ptr和mutex都是C++11的标准，以上这种方法的优点是
+
+基于 shared_ptr, 用了C++比较倡导的 RAII思想，用对象管理资源,当 shared_ptr 析构的时候，new 出来的对象也会被 delete掉。以此避免内存泄漏。
+加了锁，使用互斥量来达到线程安全。这里使用了两个 if判断语句的技术称为双检锁；好处是，只有判断指针为空的时候才加锁，避免每次调用 get_instance的方法都加锁，锁的开销毕竟还是有点大的。
+
+不足之处在于： 使用智能指针会要求用户也得使用智能指针，非必要不应该提出这种约束; 使用锁也有开销; 同时代码量也增多了，实现上我们希望越简单越好。
+
+还有更加严重的问题，在某些平台（与编译器和指令集架构有关），双检锁会失效！具体可以看这篇文章，解释了为什么会发生这样的事情。
+
+因此这里还有第三种的基于 Magic Staic的方法达到线程安全
+```cpp
+#include <iostream>
+
+class Singleton
+{
+public:
+    ~Singleton(){
+        std::cout<<"destructor called!"<<std::endl;
+    }
+    Singleton(const Singleton&)=delete;
+    Singleton& operator=(const Singleton&)=delete;
+    static Singleton& get_instance(){
+        static Singleton instance;
+        return instance;
+
+    }
+private:
+    Singleton(){
+        std::cout<<"constructor called!"<<std::endl;
+    }
+};
+
+int main(int argc, char *argv[])
+{
+    Singleton& instance_1 = Singleton::get_instance();
+    Singleton& instance_2 = Singleton::get_instance();
+    return 0;
+}
+```
+
+所用到的特性是在C++11标准中的Magic Static特性：
+
+If control enters the declaration concurrently while the variable is being initialized, the concurrent execution shall wait for completion of the initialization.
+如果当变量在初始化的时候，并发同时进入声明语句，并发线程将会阻塞等待初始化结束。
+
+这样保证了并发线程在获取静态局部变量的时候一定是初始化过的，所以具有线程安全性。
+
+C++静态变量的生存期 是从声明到程序结束，这也是一种懒汉式。
+
+这是最推荐的一种单例实现方式：
+
+通过局部静态变量的特性保证了线程安全 (C++11, GCC > 4.3, VS2015支持该特性);
+不需要使用共享指针，代码简洁；
+注意在使用的时候需要声明单例的引用 Single& 才能获取对象。
+
+返回对象和返回引用的最主要的区别就是函数原型和函数头。
+
+Car run(const Car &) //返回对象
+
+Car & run(const Car &) //返回引用
+
+第二种方法是在主程序中调用构造函数，堆上构造一个变量；第三种方法是在主程序中调用get_instance，这个函数中再构造一个变量，返回引用。前者变量的作用域是整个主函数，后者则是get_instance，但是返回引用所以可见。
+
+用mutex替换读写锁。
