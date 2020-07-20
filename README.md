@@ -1,2 +1,0 @@
-# WebServer
-C++ Web Server
