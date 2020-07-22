@@ -36,4 +36,72 @@ RAII与fork
 
 多线程写日志要异步处理
 
-使用两个缓冲区，前端往A缓冲区中写入，后端从B缓冲区中读取，写满了就交换，没写满每隔3秒也交换
+使用两个缓冲区，前端往A缓冲区中写入，后端从B缓冲区中读取，写满了就交换，没写满每隔3秒也交换1
+
+代码实现：
+实际上使用了四个缓冲区
+```cpp
+typedef boost::ptr_vector<LargeBuffer> BufferVector;
+/*
+上面也可以用vector<shared_ptr<LargeBuffer> >,但还是用ptr_vector好一点。因为：
+第一，反复声明 boost::shared_ptr 需要更多的输入。 
+其次，将 boost::shared_ptr拷进，拷出，或者在容器内部做拷贝，需要频繁的增加或者减少内部引用计数，这肯定效率不高。
+由于这些原因，Boost C++ 库提供了指针容器专门用来管理动态分配的对象。
+*/
+typedef BufferVector::auto_type BufferPtr;
+muduo::MutexLock mutex_;
+muduo::Condition cond_;
+BufferPtr currentBuffer_;//当前缓冲
+BufferPtr nextBuffer_;//预备缓冲
+BufferVector buffers_;//待写入文件的已写满的缓冲
+//前端写入
+void AsyncLogging::append(const char* logline,int len)
+{
+    //注意，每写一条日志都要请求一次锁
+    muduo::MutexLockGuard lock(mutex_);
+    if(currentBuffer_->avail()>len)//当前缓冲区没满，直接写
+        currentBuffer_->append(logline,len);
+    else
+    {
+        buffers_.push_back(currentBuffer_.release());//当前缓冲区放入后台队列
+        if(nextBuffer_)//预备缓冲变为当前缓冲
+        {
+            currentBuffer_=boost::ptr_container::move(nextBuffer_);
+        }
+        else//预备缓冲也用完了
+        {
+            currentBuffer_.reset(new LargeBuffer);
+            //带参数的reset使得原指针引用计数减1的同时改为管理另一个指针。
+            //这句话这么理解，currentBuffer_是一个智能指针，指向一块内存，有许多智能指针指向这块内存
+            //reset之后，currentBuffer_就指向新的对象，原有的那些智能指针的引用计数减一
+        }
+        currentBuffer_->append(logline,len);
+        cond_.notify();
+    }
+}
+//后端写入
+void AsyncLogging::threadFunc()
+{
+    //在后端操作时是不可写入的
+    BufferPtr newBuffer1(new LargeBuffer);
+    BufferPtr newBuffer2(new LargeBuffer);
+    BufferVector buffersToWrite;
+    while(running_)
+    {
+        {
+            muduo::MutexLockGuard lock(mutex_);
+            if(buffers_.empty())
+            {
+                cond_.waitForSeconds(flushInterval_);//注意这里，前端随时有可能向buffers_中push元素，因此等待条件要是超时或者有元素
+            }
+            buffers_.push_back(currentBuffer_.release());
+            currentBuffer_=boost::ptr_container::move(newBuffer1);//新的作为当前的
+            buffersToWrite.swap(buffers_);//交换两个队列，这样可以在临界区外读取队列
+            if(!nextBuffer_)
+            {
+                nextBuffer_=boost::ptr_container::move(newBuffer2);
+            }
+        }
+    }
+}
+```
