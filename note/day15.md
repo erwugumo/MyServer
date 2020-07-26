@@ -16,4 +16,4 @@ Server里面也有eventloop，还有eventloop的线程池，池子里有若干�
 
 Server的eventloop负责接收新request，线程池的eventloop负责处理已有socket
 
-每个eventloop对应一个channel，eventloop里进行循环，循环里面调用poll函数，poll函数里面调用的epoll_wait，之后调用channel，channel中收集过来的request，返回一个vector，在loop里处理，之后再循环
+每个eventloop对应一堆channel，每个channel负责一个fd也就是一个socket的处理。eventloop里进行循环，循环里面调用poll函数，poll函数里面调用的epoll_wait，之后调用channel，channel中收集过来的request，返回一个vector，在loop里处理，之后再循环
