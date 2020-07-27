@@ -15,8 +15,8 @@ class HttpData;
 class Channel {
  private:
   typedef std::function<void()> CallBack;
-  EventLoop *loop_;
-  int fd_;
+  EventLoop *loop_;//Channel对应的eventloop
+  int fd_;//Channel和eventloop通信用的fd
   __uint32_t events_;
   __uint32_t revents_;
   __uint32_t lastEvents_;

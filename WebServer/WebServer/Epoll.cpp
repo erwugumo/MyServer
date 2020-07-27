@@ -21,7 +21,8 @@ const int EVENTSNUM = 4096;
 const int EPOLLWAIT_TIME = 10000;
 
 typedef shared_ptr<Channel> SP_Channel;
-
+//epoll_create1 产生一个epoll 实例，返回的是实例的句柄。
+//flag 可以设置为0 或者EPOLL_CLOEXEC，为0时函数表现与epoll_create一致，EPOLL_CLOEXEC标志与open 时的O_CLOEXEC 标志类似，即进程被替换时会关闭文件描述符。
 Epoll::Epoll() : epollFd_(epoll_create1(EPOLL_CLOEXEC)), events_(EVENTSNUM) {
   assert(epollFd_ > 0);
 }

@@ -41,15 +41,15 @@ class EventLoop {
  private:
   // 声明顺序 wakeupFd_ > pwakeupChannel_
   bool looping_;
-  shared_ptr<Epoll> poller_;
-  int wakeupFd_;
+  shared_ptr<Epoll> poller_;//循环对应的epoll对象
+  int wakeupFd_;//进程间通知的fd
   bool quit_;
   bool eventHandling_;
   mutable MutexLock mutex_;
   std::vector<Functor> pendingFunctors_;
   bool callingPendingFunctors_;
-  const pid_t threadId_;
-  shared_ptr<Channel> pwakeupChannel_;
+  const pid_t threadId_;//eventpool对应的线程id
+  shared_ptr<Channel> pwakeupChannel_;//eventpool对应的Channel
 
   void wakeup();
   void handleRead();
