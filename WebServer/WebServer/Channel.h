@@ -11,13 +11,14 @@
 
 class EventLoop;
 class HttpData;
-
+//Channel就是event
+//poller_->epoll_add(pwakeupChannel_, 0);
 class Channel {
  private:
   typedef std::function<void()> CallBack;
   EventLoop *loop_;//Channel对应的eventloop
   int fd_;//Channel和eventloop通信用的fd
-  __uint32_t events_;
+  __uint32_t events_;//epoll的事件类型，默认是EPOLLIN | EPOLLET
   __uint32_t revents_;
   __uint32_t lastEvents_;
 

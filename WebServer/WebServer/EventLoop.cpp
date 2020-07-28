@@ -46,7 +46,7 @@ EventLoop::EventLoop()
     t_loopInThisThread = this;
   }
   // pwakeupChannel_->setEvents(EPOLLIN | EPOLLET | EPOLLONESHOT);
-  pwakeupChannel_->setEvents(EPOLLIN | EPOLLET);
+  pwakeupChannel_->setEvents(EPOLLIN | EPOLLET);//设置epoll的事件类型
   pwakeupChannel_->setReadHandler(bind(&EventLoop::handleRead, this));
   pwakeupChannel_->setConnHandler(bind(&EventLoop::handleConn, this));
   poller_->epoll_add(pwakeupChannel_, 0);
