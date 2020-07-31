@@ -49,7 +49,7 @@ EventLoop::EventLoop()
   pwakeupChannel_->setEvents(EPOLLIN | EPOLLET);//设置epoll的事件类型
   pwakeupChannel_->setReadHandler(bind(&EventLoop::handleRead, this));
   pwakeupChannel_->setConnHandler(bind(&EventLoop::handleConn, this));
-  poller_->epoll_add(pwakeupChannel_, 0);
+  poller_->epoll_add(pwakeupChannel_, 0);//把Channel加入到epoll，注册事件
 }
 
 void EventLoop::handleConn() {
@@ -75,7 +75,7 @@ void EventLoop::wakeup() {
 
 void EventLoop::handleRead() {
   uint64_t one = 1;
-  ssize_t n = readn(wakeupFd_, &one, sizeof one);
+  ssize_t n = readn(wakeupFd_, &one, sizeof one);//读一个数，64位，16字节
   if (n != sizeof one) {
     LOG << "EventLoop::handleRead() reads " << n << " bytes instead of 8";
   }
