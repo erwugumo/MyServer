@@ -109,6 +109,22 @@ void EventLoop::loop() {
   while (!quit_) {
     // cout << "doing" << endl;
     ret.clear();
+    /*void clear()：删除存储在vector中的所有元素
+一、
+　　1.如果vector的元素是一些object，则它将为当前存储的每个元素调用它们各自的析构函数。
+　　2.如果vector存储的是指向对象的指针，此函数并不会调用到对应的析构函数。会造成内存泄漏。想要删除vector中的元素则应遍历vector使用delete，然后再clear
+　　for(int i = 0; i < vec.size(); ++i)
+　　{
+　　　　delete vec[i];
+　　}
+　　vec.clear();
+　　调用clear后，vector的size将变成0，但是它的容量capacity并未发生改变，clear只是删除数据，并未释放vector的内存
+　　vector的clear不影响capacity
+　　如果想要清空vector的元素，使用clear，如果想要释放vector的容量，可以使用swap
+二、使用swap释放vector的容量
+　　vector<A>().swap(vec);
+　　或者vec.swap(vector<A>());
+　　重点：如果vector容器的元素是指针，先遍历容器，delete每个元素指向的内存，然后再用swap*/
     ret = poller_->poll();
     eventHandling_ = true;
     for (auto& it : ret) it->handleEvents();

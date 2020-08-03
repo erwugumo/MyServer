@@ -83,6 +83,19 @@ std::vector<SP_Channel> Epoll::poll() {
   while (true) {
     int event_count =
         epoll_wait(epollFd_, &*events_.begin(), events_.size(), EPOLLWAIT_TIME);
+        /*int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout);
+        等待事件的产生，类似于select()调用。
+        参数events用来从内核得到事件的集合，maxevents告之内核这个events有多大，
+        这个 maxevents的值不能大于创建epoll_create()时的size，参数timeout是超时时间
+        （毫秒，0会立即返回，-1将不确定，也有说法说是永久阻塞）。
+        该函数返回需要处理的事件数目，如返回0表示已超时。如果返回–1，则表示出现错误，需要检查 errno错误码判断错误类型。
+        第1个参数 epfd是 epoll的描述符。
+        第2个参数 events则是分配好的 epoll_event结构体数组，epoll将会把发生的事件复制到 events数组中
+        （events不可以是空指针，内核只负责把数据复制到这个 events数组中，不会去帮助我们在用户态中分配内存。内核这种做法效率很高）。
+        第3个参数 maxevents表示本次可以返回的最大事件数目，通常 maxevents参数与预分配的events数组的大小是相等的。
+        第4个参数 timeout表示在没有检测到事件发生时最多等待的时间（单位为毫秒），
+        如果 timeout为0，则表示 epoll_wait在 rdllist链表中为空，立刻返回，不会等待。
+        */
     if (event_count < 0) perror("epoll wait error");
     std::vector<SP_Channel> req_data = getEventsRequest(event_count);
     if (req_data.size() > 0) return req_data;
@@ -102,6 +115,15 @@ std::vector<SP_Channel> Epoll::getEventsRequest(int events_num) {
 
     if (cur_req) {
       cur_req->setRevents(events_[i].events);
+      /*
+      其中events表示感兴趣的事件和被触发的事件，可能的取值为：
+      EPOLLIN：表示对应的文件描述符可以读；
+      EPOLLOUT：表示对应的文件描述符可以写；
+      EPOLLPRI：表示对应的文件描述符有紧急的数可读；
+      EPOLLERR：表示对应的文件描述符发生错误；
+      EPOLLHUP：表示对应的文件描述符被挂断；
+      EPOLLET：    ET的epoll工作模式；
+      */
       cur_req->setEvents(0);
       // 加入线程池之前将Timer和request分离
       // cur_req->seperateTimer();
