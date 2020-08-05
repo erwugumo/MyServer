@@ -27,6 +27,7 @@ Server::Server(EventLoop *loop, int threadNum, int port)
 void Server::start() {
   eventLoopThreadPool_->start();//起四个线程
   // acceptChannel_->setEvents(EPOLLIN | EPOLLET | EPOLLONESHOT);
+  //acceptChannel里面就是listenfd
   acceptChannel_->setEvents(EPOLLIN | EPOLLET);
   acceptChannel_->setReadHandler(bind(&Server::handNewConn, this));
   acceptChannel_->setConnHandler(bind(&Server::handThisConn, this));
