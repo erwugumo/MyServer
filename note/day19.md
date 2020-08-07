@@ -2,6 +2,17 @@ WebServer的总体流程：
 首先建一个主循环，在主循环中会建一个channel，channel绑定epoll的event，绑定read函数和连接函数，这个channel主要用于线程间通信。建立一个epoll对象，epoll对象中有epollfd，可以进行一大堆操作
 然后建一个Server，server与上面的主循环绑定，建立线程池，建立接受请求的channel
 接下来调用Server的start函数，在线程池中起四个线程，设置接受请求的channel的event，绑定函数，将Server的channel注册进主循环的epoll
+
+这个把channel注册进epoll，实际上调用的是epoll_add函数，它会在主循环中的epoll中的fd2chan中保存一个channel的副本，哈希值是通讯用的fd
+
 最后启动主循环的loop函数，在loop中是一个无限循环函数，函数中调用epollwait接受请求
+
+Server的channel对应的连接函数叫handNewConn
+这个函数会调用accept接受新来的请求，然后从线程池中拿到一个循环，将请求和循环打包成一个HttpData对象，HttpData对象在构造时，会建一个自己的channel，这个channel和HttpData对象的loop关联。调用获取到的循环的queueInLoop函数，把HttpData注册到循环的epoll里。
+
+所以说，最后一共默认有五个循环：
+一个主循环，负责接收新请求;四个从循环，负责维护连接。
+
+当有一个新的请求到达，主循环中的epoll_wait获得全部的新连接数量，调用函数将新连接全部打包成Channel，然后在主循环中调用
 
 
