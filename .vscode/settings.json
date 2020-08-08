@@ -67,5 +67,6 @@
         "xstddef": "cpp",
         "xstring": "cpp",
         "xtr1common": "cpp"
-    }, // 格式化时调整include的顺序（按字母排序）
+    },
+    "powermode.enabled": true, // 格式化时调整include的顺序（按字母排序）
 }

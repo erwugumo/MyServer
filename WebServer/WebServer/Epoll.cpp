@@ -29,10 +29,13 @@ Epoll::Epoll() : epollFd_(epoll_create1(EPOLL_CLOEXEC)), events_(EVENTSNUM) {
 Epoll::~Epoll() {}
 
 // 注册新描述符
+//event并不和Channel绑定
 void Epoll::epoll_add(SP_Channel request, int timeout) {
   int fd = request->getFd();
   if (timeout > 0) {
+    //先在定时器中注册新的节点
     add_timer(request, timeout);
+    //每出现一个新的request，就注册epoll，然后在对应epoll中保存一个request->http
     fd2http_[fd] = request->getHolder();
   }
   struct epoll_event event;
@@ -40,7 +43,7 @@ void Epoll::epoll_add(SP_Channel request, int timeout) {
   event.events = request->getEvents();
 
   request->EqualAndUpdateLastEvents();
-
+  //再保存一个request->channel
   fd2chan_[fd] = request;
   if (epoll_ctl(epollFd_, EPOLL_CTL_ADD, fd, &event) < 0) {
     perror("epoll_add error");
@@ -48,7 +51,7 @@ void Epoll::epoll_add(SP_Channel request, int timeout) {
   }
 }
 
-// 修改描述符状态
+// 根据request修改描述符状态
 void Epoll::epoll_mod(SP_Channel request, int timeout) {
   if (timeout > 0) add_timer(request, timeout);
   int fd = request->getFd();

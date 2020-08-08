@@ -45,7 +45,6 @@ EventLoop* EventLoopThread::startLoop() {
 //这是在线程中运行的函数
 void EventLoopThread::threadFunc() {
   EventLoop loop;
-
   {
     MutexLockGuard lock(mutex_);
     loop_ = &loop;
