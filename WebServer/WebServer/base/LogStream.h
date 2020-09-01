@@ -43,6 +43,7 @@ class FixedBuffer : noncopyable {
 
 class LogStream : noncopyable {
  public:
+  //每一个LogStream对象都有一个Buffer，使用LogStream向buffer中写入内容
   typedef FixedBuffer<kSmallBuffer> Buffer;
 
   LogStream& operator<<(bool v) {

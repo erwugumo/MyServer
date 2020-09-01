@@ -30,6 +30,7 @@ class Logger {
     std::string basename_;
   };
   Impl impl_;
+  //static变量，未实例化也已经存在，在全局数据区分配内存
   static std::string logFileName_;
 };
 
