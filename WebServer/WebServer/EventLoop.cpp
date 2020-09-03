@@ -48,6 +48,7 @@ EventLoop::EventLoop()
   // pwakeupChannel_->setEvents(EPOLLIN | EPOLLET | EPOLLONESHOT);
   pwakeupChannel_->setEvents(EPOLLIN | EPOLLET);//设置epoll的事件类型
   pwakeupChannel_->setReadHandler(bind(&EventLoop::handleRead, this));
+  //bind就是为了将函数handleRead作为参数传入这个函数，handleRead有一个隐藏参数this，是当前Loop的指针，这样才能正常调用里面的数据成员
   pwakeupChannel_->setConnHandler(bind(&EventLoop::handleConn, this));
   poller_->epoll_add(pwakeupChannel_, 0);//把Channel加入到epoll，注册事件
 }
@@ -93,7 +94,8 @@ void EventLoop::runInLoop(Functor&& cb) {
 void EventLoop::queueInLoop(Functor&& cb) {
   {
     MutexLockGuard lock(mutex_);
-    pendingFunctors_.emplace_back(std::move(cb));
+    //emplace_back也是向尾部添加元素
+    pendingFunctors_.emplace_back(std::move(cb));//std::move并不能移动任何东西，它唯一的功能是将一个左值强制转化为右值引用，继而可以通过右值引用使用该值，以用于移动语义。
   }
 
   if (!isInLoopThread() || callingPendingFunctors_) wakeup();
@@ -110,7 +112,7 @@ void EventLoop::loop() {
     // cout << "doing" << endl;
     ret.clear();
     /*void clear()：删除存储在vector中的所有元素
-一、
+    一、
 　　1.如果vector的元素是一些object，则它将为当前存储的每个元素调用它们各自的析构函数。
 　　2.如果vector存储的是指向对象的指针，此函数并不会调用到对应的析构函数。会造成内存泄漏。想要删除vector中的元素则应遍历vector使用delete，然后再clear
 　　for(int i = 0; i < vec.size(); ++i)
@@ -121,14 +123,18 @@ void EventLoop::loop() {
 　　调用clear后，vector的size将变成0，但是它的容量capacity并未发生改变，clear只是删除数据，并未释放vector的内存
 　　vector的clear不影响capacity
 　　如果想要清空vector的元素，使用clear，如果想要释放vector的容量，可以使用swap
-二、使用swap释放vector的容量
+    二、使用swap释放vector的容量
 　　vector<A>().swap(vec);
 　　或者vec.swap(vector<A>());
 　　重点：如果vector容器的元素是指针，先遍历容器，delete每个元素指向的内存，然后再用swap*/
+    //得到所有发起连接的对应Channel，保存在ret里
     ret = poller_->poll();
     eventHandling_ = true;
+    //对每一个连接代表的channel，调用handle进行处理
+    //包括对新连接进行accept，对老连接进行处理
     for (auto& it : ret) it->handleEvents();
     eventHandling_ = false;
+    //把函数数组中的函数一个个执行完
     doPendingFunctors();
     poller_->handleExpired();
   }

@@ -100,6 +100,7 @@ std::vector<SP_Channel> Epoll::poll() {
         如果 timeout为0，则表示 epoll_wait在 rdllist链表中为空，立刻返回，不会等待。
         */
     if (event_count < 0) perror("epoll wait error");
+    //把events中的元素转为channel
     std::vector<SP_Channel> req_data = getEventsRequest(event_count);
     if (req_data.size() > 0) return req_data;
   }
@@ -113,7 +114,7 @@ std::vector<SP_Channel> Epoll::getEventsRequest(int events_num) {
   for (int i = 0; i < events_num; ++i) {
     // 获取有事件产生的描述符
     int fd = events_[i].data.fd;
-
+    //每个事件有一个描述符，每个描述符对应一个Channel
     SP_Channel cur_req = fd2chan_[fd];
 
     if (cur_req) {

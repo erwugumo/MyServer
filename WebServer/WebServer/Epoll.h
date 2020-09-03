@@ -24,7 +24,8 @@ class Epoll {
   void handleExpired();
 
  private:
-  static const int MAXFDS = 100000;
+  static const int MAXFDS = 100000;//linux默认最大文件描述符为65536个，所以100000够用了
+  //不是有了fd之后构造channel，而是已经有了所有channel，直接找就行
   int epollFd_;//epoll返回的句柄
   std::vector<epoll_event> events_;//epoll_event的数组
   std::shared_ptr<Channel> fd2chan_[MAXFDS];
