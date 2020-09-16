@@ -58,7 +58,15 @@ class Channel {
   void setConnHandler(CallBack &&connHandler) { connHandler_ = connHandler; }
 
   void handleEvents() {
-    events_ = 0;
+    /*EPOLLIN:1
+    EPOLLOUT:4
+    EPOLLRDHUP:8192
+    EPOLLPRI:2
+    EPOLLERR:8
+    EPOLLHUP:16
+    EPOLLET:-2147483648
+    EPOLLONESHOT:1073741824
+    events_ = 0;*/
     if ((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN)) {
       events_ = 0;
       return;
